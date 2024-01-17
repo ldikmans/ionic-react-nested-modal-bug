@@ -9,7 +9,7 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 interface ContainerProps {
   showModal: boolean;
@@ -28,12 +28,14 @@ const InlineModal2: React.FC<ContainerProps> = ({
   }
 
   function addButtonListener() {
-    const button = document.getElementById("inlinemodal2-button");
-    if (button) {
-      button.addEventListener("click", () => {
-        console.log("in the added event listener");
-        closeInlineModal2();
-      });
+    if (!inlineParent) {
+      const button = document.getElementById("inlinemodal2-button");
+      if (button) {
+        button.addEventListener("click", () => {
+          console.log("in the added event listener");
+          closeInlineModal2();
+        });
+      }
     }
   }
 
